@@ -1,14 +1,14 @@
 ---
-title: Streamlit Template Space
+title: JobFitAnalyzer
 emoji: 🚀
 colorFrom: red
 colorTo: red
 sdk: docker
 app_port: 8501
 tags:
-  - streamlit
+- streamlit
 pinned: false
-short_description: Streamlit template space
+short_description: AI-powered resume & job description matcher.
 ---
 
 # Welcome to Streamlit!
