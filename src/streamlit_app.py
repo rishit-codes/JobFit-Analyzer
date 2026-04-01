@@ -1,40 +1,60 @@
-import altair as alt
-import numpy as np
-import pandas as pd
 import streamlit as st
+from utils.extractor import extract_resume_text
+from utils.skills import get_combined_skills, generate_skill_gap_report
+from utils.scoring import get_match_score
 
-"""
-# Welcome to Streamlit!
+def main():
+    st.set_page_config(page_title="Smart Job Description Analyzer", layout="centered")
+    
+    st.title("Smart Job Description Analyzer")
+    st.write("Paste a job description and upload your resume to get an instant match score and skill gap report.")
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:.
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+    jd_text = st.text_area("Paste the Job Description Here", height=200)
+    resume_file = st.file_uploader("Upload your resume (PDF only)", type=["pdf"])
 
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
+    if st.button("Analyze"):
+        if jd_text and resume_file:
+            with st.spinner("Analyzing..."):
+                try:
+                    # 1. Extract Text
+                    resume_text = extract_resume_text(resume_file)
+                    
+                    # 2. Extract Skills
+                    jd_skills = get_combined_skills(jd_text)
+                    resume_skills = get_combined_skills(resume_text)
+                    
+                    # 3. Calculate Score
+                    score = get_match_score(jd_text, resume_text)
+                    
+                    # 4. Generate Gap Report
+                    report = generate_skill_gap_report(jd_skills, resume_skills)
 
-num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
-num_turns = st.slider("Number of turns in spiral", 1, 300, 31)
+                    # Display Results
+                    st.subheader("Analysis Results")
+                    st.metric(label="Overall Match Score", value=f"{score}%")
+                    
+                    col1, col2 = st.columns(2)
+                    
+                    with col1:
+                        st.success("✅ Skills You Have")
+                        if report["matched"]:
+                            for skill in sorted(report["matched"]):
+                                st.write(f"- {skill.title()}")
+                        else:
+                            st.write("No matching skills found.")
+                            
+                    with col2:
+                        st.error("❌ Skills You're Missing")
+                        if report["missing"]:
+                            for skill in sorted(report["missing"]):
+                                st.write(f"- {skill.title()}")
+                        else:
+                            st.write("No missing skills!")
+                            
+                except Exception as e:
+                    st.error(f"An error occurred during analysis: {e}")
+        else:
+            st.warning("Please provide both a job description and a resume.")
 
-indices = np.linspace(0, 1, num_points)
-theta = 2 * np.pi * num_turns * indices
-radius = indices
-
-x = radius * np.cos(theta)
-y = radius * np.sin(theta)
-
-df = pd.DataFrame({
-    "x": x,
-    "y": y,
-    "idx": indices,
-    "rand": np.random.randn(num_points),
-})
-
-st.altair_chart(alt.Chart(df, height=700, width=700)
-    .mark_point(filled=True)
-    .encode(
-        x=alt.X("x", axis=None),
-        y=alt.Y("y", axis=None),
-        color=alt.Color("idx", legend=None, scale=alt.Scale()),
-        size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
-    ))
+if __name__ == "__main__":
+    main()
