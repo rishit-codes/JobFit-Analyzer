@@ -1,3 +1,16 @@
+---
+title: JobFitAnalyzer
+emoji: 🚀
+colorFrom: red
+colorTo: red
+sdk: docker
+app_port: 8501
+tags:
+- streamlit
+pinned: false
+short_description: AI-powered resume & job description matcher.
+---
+
 # Smart Job Description Analyzer
 
 > A portfolio ML/AI project: paste a job description, upload your resume, get an instant match score and skill gap report.
@@ -48,15 +61,6 @@ Finding the right job match is tough. This tool makes it easier by instantly ana
    ```bash
    streamlit run app.py
    ```
-
-## 🌍 Deployment on Hugging Face Spaces
-
-This app is optimized to run on Hugging Face Spaces for free.
-
-1. Create a free account at [Hugging Face](https://huggingface.co).
-2. Create a new Space and select **Streamlit** as the space SDK.
-3. Upload your `app.py`, `requirements.txt`, and the `utils/` folder.
-4. Within minutes, your app will be live and shareable!
 
 ## 🤝 Contribution
 Feel free to fork this project, submit PRs, or use it to build your own ML portfolio.

@@ -3,3 +3,9 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 .aider*
+.env
+*.env
+.vscode/
+.idea/
+*.log
+*.sqlite3
