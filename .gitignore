@@ -9,3 +9,18 @@ __pycache__/
 .idea/
 *.log
 *.sqlite3
+
+# Agent & Tool Metadata
+.gemini/
+.aider*
+brain/
+*demo*.webp
+
+# App Generated Files
+*.pdf
+report.pdf
+temp_*.pdf
+
+# Project Planning & Docs
+v2_BuildPlan.md
+docs/

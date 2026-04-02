@@ -11,31 +11,32 @@ pinned: false
 short_description: AI-powered resume & job description matcher.
 ---
 
-# Smart Job Description Analyzer
+# Smart Job Description Analyzer `v2.0` 🚀
 
-> A portfolio ML/AI project: paste a job description, upload your resume, get an instant match score and skill gap report.
+> **Upgrade v2:** Now with ATS Scoring, PDF Reports, and Multi-JD Comparison.
+> A professional-grade tool to boost your job search credibility.
 
-🌐 **Live Demo:** [Hugging Face Space Link Here](#) *(Replace with your actual HF Spaces link after deployment)*
+🌐 **Live Demo:** [Hugging Face Space Link Here](#)
 
-## 💡 What It Does
+## 💡 Key Features (v2)
 
-Finding the right job match is tough. This tool makes it easier by instantly analyzing your resume against any job description. 
-
-1. **Paste a job description** (from LinkedIn, specialized boards, or company careers pages).
-2. **Upload your resume** (PDF format).
-3. **Get Insights**:
-   - **Match Score:** A percentage of how well your resume contextually fits the JD.
-   - **Skills You Have:** What matched perfectly.
-   - **Skills You're Missing:** The gaps you need to fill to become the perfect candidate.
+1. **ATS Score Simulation:** Get an "ATS Compatibility" score that checks keyword density, formatting red flags, and file hygiene.
+2. **Downloadable PDF Reports:** Export your full analysis (match score, matched/missing skills, and suggestions) as a clean, shareable PDF.
+3. **Multi-JD Comparison:** Paste up to 3 job descriptions to see which role you match best, ranked by score.
+4. **URL Scraping:** Paste a job posting URL (LinkedIn, Internshala, etc.) instead of copying text manually.
+5. **Tailored Resume Suggestions:** Actionable coaching on where to add missing skills in your resume.
+6. **Skill Trend Badges:** See which of your missing skills are `🔥 Trending` or `⚡ In Demand` in the current market.
 
 ## 🛠️ Tech Stack
 
 - **Python:** Core backend logic.
 - **Streamlit:** Fast and interactive UI.
-- **pdfplumber:** Robust PDF parsing to extract clean resume text.
-- **spaCy:** NLP for smarter, dynamic skill entity recognition.
-- **sentence-transformers:** `all-MiniLM-L6-v2` model for deep semantic similarity scoring and embedding generation.
-- **scikit-learn:** Cosine similarity calculation to generate the final match percentage.
+- **pdfplumber:** Robust PDF parsing for resume text.
+- **fpdf2:** Professional PDF report generation.
+- **spaCy:** NLP for dynamic skill entity recognition.
+- **sentence-transformers:** Semantic similarity scoring using `all-MiniLM-L6-v2`.
+- **BeautifulSoup4 & Requests:** Web scraping for JD URLs.
+- **scikit-learn:** Cosine similarity calculation.
 
 ## 🚀 How to Run Locally
 

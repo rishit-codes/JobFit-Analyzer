@@ -76,3 +76,21 @@ def generate_skill_gap_report(jd_skills: List[str], resume_skills: List[str]) ->
         "missing": list(jd_set.difference(resume_set)),
         "additional_in_resume": list(resume_set.difference(jd_set))
     }
+
+TRENDING_SKILLS = {
+    "langchain": "🔥 Trending",
+    "llm": "🔥 Trending",
+    "docker": "⚡ In Demand",
+    "kubernetes": "⚡ In Demand",
+    "fastapi": "⚡ In Demand",
+    "pytorch": "🔥 Trending",
+    "sql": "⚡ In Demand",
+    "react": "⚡ In Demand",
+}
+
+def tag_skills(missing_skills: List[str]) -> List[str]:
+    tagged = []
+    for skill in missing_skills:
+        badge = TRENDING_SKILLS.get(skill.lower(), "")
+        tagged.append(f"{skill} {badge}".strip())
+    return tagged
